@@ -1,0 +1,11 @@
+from django.urls import path
+from . import views
+
+app_name = 'predictor'
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('predict/', views.predict, name='predict'),
+    # legacy route: render the index/dashboard for now
+    path('forecast/', views.index, name='forecast'),
+]

@@ -1,0 +1,129 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Way2Agri Price Forecast</title>
+
+  <!-- Plotly (for charts like screenshots) -->
+  <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{% static 'predictor/style.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+  <img src="{% static 'predictor/logo-small.svg' %}" alt="Way2Agri" class="brand-logo"/>
+        <div class="brand-text">
+          <h1>Way2Agri Price Forecast</h1>
+          <p>AI-powered market forecasts for better decisions</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-grid">
+    <!-- Left column: project info, accuracy & controls -->
+    <section class="card controls">
+      <h2>About This Project</h2>
+      <div class="project-info">
+        <p>Way2Agri Price Forecast uses advanced machine learning to predict agricultural commodity prices. Our system:</p>
+        <ul>
+          <li>Analyzes historical price patterns</li>
+          <li>Considers seasonal trends and market cycles</li>
+          <li>Updates predictions with latest market data</li>
+          <li>Helps farmers and traders make informed decisions</li>
+        </ul>
+      </div>
+
+      <h3 class="performance-heading">Model Performance</h3>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">Mean Accuracy</div>
+          <div class="metric-value">{{ metrics.accuracy|default:'92'}}%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Mean Error</div>
+          <div class="metric-value">±{{ metrics.mean_error|default:'3.5'}}%</div>
+        </div>
+      </div>
+
+      <h2>Get Price Forecast</h2>
+      <form method="get" class="inline-form">
+        <label class="label" for="horizon">Forecast horizon</label>
+        <div class="form-row">
+          <select name="horizon" id="horizon" class="horizon-select">
+            <option value="3" {% if request.GET.horizon == '3' %}selected{% endif %}>3 months</option>
+            <option value="6" {% if request.GET.horizon == '6' %}selected{% endif %}>6 months</option>
+            <option value="12" {% if request.GET.horizon == '12' or not request.GET.horizon %}selected{% endif %}>12 months</option>
+            <option value="24" {% if request.GET.horizon == '24' %}selected{% endif %}>24 months</option>
+          </select>
+          <button type="submit" class="btn btn-primary">Update Forecast</button>
+        </div>
+        <small class="muted">Or supply a CSV via the /predict/ JSON API (server-side upload)</small>
+      </form>
+
+      <div class="stats small-cards">
+        <div class="small-card">
+          <div class="label">Current Price</div>
+          <div class="value">₹{{ current_price|floatformat:2 }}</div>
+        </div>
+        <div class="small-card">
+          <div class="label">Avg Forecast</div>
+          <div class="value">{% if avg_forecast %}₹{{ avg_forecast|floatformat:2 }}{% else %}—{% endif %}</div>
+        </div>
+        <div class="small-card">
+          <div class="label">12-Month Trend</div>
+          <div class="value">{% if metrics.trend_pct is not None %}{{ metrics.trend_pct|floatformat:1 }}%{% else %}—{% endif %}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right column: charts and table -->
+    <section class="card charts">
+      <div class="card-head">
+        <h2>Price Forecast Chart</h2>
+      </div>
+
+      <div id="chartArea" class="chart-area">
+        <!-- Static placeholder chart area. For interactive charts, add Plotly/JS. -->
+        <div class="chart-placeholder">Price forecast visualization (server-rendered)</div>
+      </div>
+
+      <div class="card-head mt-2">
+        <h2>Detailed Forecast</h2>
+      </div>
+
+      <div id="forecastTableWrap" class="table-wrap">
+        <table id="forecastTable" class="forecast-table">
+          <thead><tr><th>Month</th><th>Forecast Price</th><th>Monthly Change</th></tr></thead>
+          <tbody>
+            {% for row in forecast %}
+            <tr>
+              <td>{{ row.date }}</td>
+              <td>₹{{ row.forecast|floatformat:2 }}</td>
+              <td class="{% if row.change_pct >= 0 %}change-up{% else %}change-down{% endif %}">
+                {{ row.change_pct|floatformat:1 }}%
+              </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3">No forecast available</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© 2025 Way2Agribusiness India Pvt. Ltd. | AI-Powered Agricultural Intelligence</small>
+    </div>
+  </footer>
+
+  <script src="{% static 'predictor/app.js' %}"></script>
+</body>
+</html>

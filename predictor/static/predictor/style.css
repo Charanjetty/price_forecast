@@ -1,0 +1,236 @@
+/* Way2Agri theme - green, clean, card layout */
+:root{
+  --primary: #0b6b3a;
+  --accent: #00a86b;
+  --muted: #7a8b7a;
+  --bg: #f6faf6;
+  --card: #ffffff;
+  --radius: 12px;
+  --info-blue: #2c5282;
+  --info-bg: #f7fafc;
+}
+
+/* Project Info Styles */
+.project-info {
+  margin-bottom: 2rem;
+}
+
+.project-info ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.project-info li {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+}
+
+/* Model Performance Section */
+.performance-heading {
+  color: var(--info-blue);
+  margin: 2rem 0 1rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: var(--info-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  color: var(--info-blue);
+  font-weight: bold;
+}
+
+/* Horizon Select Styles */
+.horizon-select {
+  padding: 8px;
+  border: 1px solid #e6efe6;
+  border-radius: 8px;
+  width: 100%;
+  background: var(--card);
+}
+
+*{box-sizing:border-box}
+body{
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  margin:0; background:var(--bg); color:#16321f;
+}
+
+/* Header */
+.site-header{
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  color:white;
+  padding: 18px 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center}
+.brand{display:flex;gap:12px;align-items:center}
+.brand-logo{width:48px;height:48px;object-fit:contain}
+.brand-text h1{margin:0;font-size:20px;letter-spacing:0.2px}
+.brand-text p{margin:0;font-size:12px;opacity:0.9}
+
+/* Layout */
+.container{max-width:1200px;margin:28px auto;padding:0 18px}
+.main-grid{display:grid;grid-template-columns:360px 1fr;gap:20px;align-items:start}
+
+/* Cards */
+.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 18px rgba(8,31,16,0.06)}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.controls h2, .charts h2{margin:0 0 12px 0}
+
+/* form */
+.label{font-weight:600;color:var(--primary);display:block;margin-bottom:8px}
+input[type=file]{width:100%;padding:8px;border-radius:8px;border:1px solid #e6efe6}
+.form-row{display:flex;gap:12px;margin-top:12px}
+.btn{padding:10px 16px;border-radius:8px;border:none;cursor:pointer}
+.btn-primary{background:var(--primary);color:white}
+.btn-outline{background:transparent;border:1px solid var(--primary);color:var(--primary)}
+
+/* small cards */
+.small-cards{display:grid;grid-template-columns:repeat(1,1fr);gap:10px;margin-top:16px}
+@media(min-width:420px){ .small-cards{grid-template-columns:repeat(3,1fr)} }
+
+.small-card{background:#f8fff8;padding:12px;border-radius:8px;text-align:center}
+.small-card .label{font-size:12px;color:var(--muted)}
+.small-card .value{font-size:18px;font-weight:700;color:var(--primary)}
+
+/* chart area */
+.chart-area{height:420px;border-radius:8px;background:transparent;padding:8px}
+
+/* forecast table */
+.table-wrap{margin-top:12px}
+.forecast-table{width:100%;border-collapse:collapse}
+.forecast-table thead th{background:#f0fff4;color:var(--primary);padding:12px;text-align:left}
+.forecast-table tbody td{padding:12px;border-bottom:1px solid #f2f6f2}
+.change-up{color:#138a3a;font-weight:700}
+.change-down{color:#cf2a2a;font-weight:700}
+
+/* footer */
+.site-footer{background:var(--primary);color:white;padding:12px 0;margin-top:28px;text-align:center;border-top-left-radius:8px;border-top-right-radius:8px}
+
+/* responsive */
+@media(max-width: 900px){
+  .main-grid{grid-template-columns:1fr; padding-bottom:20px}
+  .chart-area{height:320px}
+}
+:root {
+    --primary: #006b3c;
+    --secondary: #00a86b;
+    --accent: #ffc107;
+    --light: #f4f6f5;
+    --dark: #1e2d24;
+    --text: #2e3d2e;
+    --success: #28a745;
+    --danger: #dc3545;
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: var(--light);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.prediction-form, .prediction-result, .chart-card, .metric-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+button {
+    background-color: var(--secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+button:hover {
+    background-color: var(--primary);
+}
+
+.prediction-value {
+    font-size: 2.5rem;
+    color: var(--success);
+    text-align: center;
+    font-weight: bold;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.metric-card h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    color: var(--secondary);
+}
+
+.actions-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.action-button {
+    display: inline-block;
+    margin: 0.5rem;
+    background-color: var(--accent);
+    color: var(--dark);
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.action-button:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+    margin-top: 2rem;
+}
